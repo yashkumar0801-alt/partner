@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="overview.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Floating Back Button -->
+    <a href="home.html" class="floating-back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <main class="dashboard">
+        <!-- Header Section -->
+        <header class="header-section">
+            <h1 class="page-title">OVERVIEW</h1>
+            <h2 class="month-heading">JULY</h2>
+        </header>
+
+        <!-- Summary & Legend Row (Amount Box on Far Left, Legend on Far Right) -->
+        <section class="summary-section">
+            <div class="card metric-card">
+                <span class="metric-label">TOTAL AMOUNT</span>
+                <div class="metric-value">₹25,000</div>
+            </div>
+
+            <div class="table-legend">
+                <span class="legend-item">
+                    <i class="fa-solid fa-xmark cross-icon"></i> = Absent
+                </span>
+            </div>
+        </section>
+
+        <!-- History Data Section -->
+        <section class="history-section">
+            <div class="card data-card">
+                <table class="overview-table">
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>LOCATION</th>
+                            <th>WORKS DONE</th>
+                            <th>RATING</th>
+                            <th>AMOUNT RECEIVED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 01 Jul -->
+                        <tr>
+                            <td>01 Jul</td>
+                            <td>Sector 5, Salt Lake</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-scissors"></i> Lawn Mowing</li>
+                                    <li><i class="fa-solid fa-tree"></i> Hedge Trimming</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td class="amount-cell">₹1,800</td>
+                        </tr>
+
+                        <!-- 02 Jul -->
+                        <tr>
+                            <td>02 Jul</td>
+                            <td>Park Street</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-seedling"></i> Garden Maintenance</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td class="amount-cell">₹1,200</td>
+                        </tr>
+
+                        <!-- 03 Jul: ABSENT 1 -->
+                        <tr class="status-row row-absent">
+                            <td>03 Jul</td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                        </tr>
+
+                        <!-- 04 Jul -->
+                        <tr>
+                            <td>04 Jul</td>
+                            <td>New Town</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-faucet-drip"></i> Irrigation Check</li>
+                                    <li><i class="fa-solid fa-broom"></i> Patio Cleaning</li>
+                                    <li><i class="fa-solid fa-spray-can"></i> Pest Control</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.8</span></td>
+                            <td class="amount-cell">₹3,500</td>
+                        </tr>
+
+                        <!-- 05 Jul: SUNDAY -->
+                        <tr class="status-row row-sunday">
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                        </tr>
+
+                        <!-- 06 Jul -->
+                        <tr>
+                            <td>06 Jul</td>
+                            <td>Ballygunge</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-seedling"></i> Tree Pruning</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.7</span></td>
+                            <td class="amount-cell">₹1,500</td>
+                        </tr>
+
+                        <!-- 07 Jul: ABSENT 2 -->
+                        <tr class="status-row row-absent">
+                            <td>07 Jul</td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                        </tr>
+
+                        <!-- 08 Jul -->
+                        <tr>
+                            <td>08 Jul</td>
+                            <td>Alipore</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-leaf"></i> Mulching</li>
+                                    <li><i class="fa-solid fa-scissors"></i> Lawn Mowing</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td class="amount-cell">₹2,200</td>
+                        </tr>
+
+                        <!-- 09 Jul -->
+                        <tr>
+                            <td>09 Jul</td>
+                            <td>Salt Lake Sec 1</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-wrench"></i> Pipe Repair</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.6</span></td>
+                            <td class="amount-cell">₹900</td>
+                        </tr>
+
+                        <!-- 10 Jul -->
+                        <tr>
+                            <td>10 Jul</td>
+                            <td>Tollygunge</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-seedling"></i> Plant Care</li>
+                                    <li><i class="fa-solid fa-broom"></i> Yard Cleanup</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td class="amount-cell">₹1,700</td>
+                        </tr>
+
+                        <!-- 11 Jul -->
+                        <tr>
+                            <td>11 Jul</td>
+                            <td>Kasba</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-tree"></i> Shrub Trimming</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.8</span></td>
+                            <td class="amount-cell">₹1,100</td>
+                        </tr>
+
+                        <!-- 12 Jul: SUNDAY -->
+                        <tr class="status-row row-sunday">
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                        </tr>
+
+                        <!-- 13 Jul -->
+                        <tr>
+                            <td>13 Jul</td>
+                            <td>Rajarhat</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-broom"></i> Deck Wash</li>
+                                    <li><i class="fa-solid fa-seedling"></i> Planting</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td class="amount-cell">₹2,100</td>
+                        </tr>
+
+                        <!-- 14 Jul: ABSENT 3 -->
+                        <tr class="status-row row-absent">
+                            <td>14 Jul</td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                        </tr>
+
+                        <!-- 15 Jul -->
+                        <tr>
+                            <td>15 Jul</td>
+                            <td>Jadavpur</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-scissors"></i> Grass Cutting</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.5</span></td>
+                            <td class="amount-cell">₹1,000</td>
+                        </tr>
+
+                        <!-- 16 Jul -->
+                        <tr>
+                            <td>16 Jul</td>
+                            <td>Behala</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-faucet-drip"></i> Sprinkler Setup</li>
+                                    <li><i class="fa-solid fa-seedling"></i> Soil Fertilization</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td class="amount-cell">₹2,400</td>
+                        </tr>
+
+                        <!-- 17 Jul -->
+                        <tr>
+                            <td>17 Jul</td>
+                            <td>Dum Dum</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-tree"></i> Branch Pruning</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.7</span></td>
+                            <td class="amount-cell">₹1,300</td>
+                        </tr>
+
+                        <!-- 18 Jul -->
+                        <tr>
+                            <td>18 Jul</td>
+                            <td>Lake Gardens</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-scissors"></i> Hedge Shaping</li>
+                                    <li><i class="fa-solid fa-broom"></i> Walkway Clearing</li>
+                                    <li><i class="fa-solid fa-leaf"></i> Composting</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td class="amount-cell">₹3,100</td>
+                        </tr>
+
+                        <!-- 19 Jul: SUNDAY -->
+                        <tr class="status-row row-sunday">
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                        </tr>
+
+                        <!-- 20 Jul: ABSENT 4 -->
+                        <tr class="status-row row-absent">
+                            <td>20 Jul</td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                        </tr>
+
+                        <!-- 21 Jul -->
+                        <tr>
+                            <td>21 Jul</td>
+                            <td>Gariahat</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-seedling"></i> Flowerpot Setup</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.8</span></td>
+                            <td class="amount-cell">₹800</td>
+                        </tr>
+
+                        <!-- 22 Jul -->
+                        <tr>
+                            <td>22 Jul</td>
+                            <td>Salt Lake Sec 3</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-spray-can"></i> Pest Control</li>
+                                    <li><i class="fa-solid fa-scissors"></i> Lawn Mowing</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td class="amount-cell">₹2,300</td>
+                        </tr>
+
+                        <!-- 23 Jul -->
+                        <tr>
+                            <td>23 Jul</td>
+                            <td>Howrah</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-tree"></i> Tree Trimming</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.6</span></td>
+                            <td class="amount-cell">₹1,400</td>
+                        </tr>
+
+                        <!-- 24 Jul: ABSENT 5 -->
+                        <tr class="status-row row-absent">
+                            <td>24 Jul</td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-xmark"></i></td>
+                        </tr>
+
+                        <!-- 25 Jul -->
+                        <tr>
+                            <td>25 Jul</td>
+                            <td>Park Street</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-seedling"></i> Garden Overhaul</li>
+                                    <li><i class="fa-solid fa-broom"></i> Patio Wash</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td class="amount-cell">₹2,800</td>
+                        </tr>
+
+                        <!-- 26 Jul: SUNDAY -->
+                        <tr class="status-row row-sunday">
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                            <td>Sunday</td>
+                        </tr>
+
+                        <!-- 27 Jul -->
+                        <tr>
+                            <td>27 Jul</td>
+                            <td>New Alipore</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-leaf"></i> Lawn Aeration</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.7</span></td>
+                            <td class="amount-cell">₹1,600</td>
+                        </tr>
+
+                        <!-- 28 Jul -->
+                        <tr>
+                            <td>28 Jul</td>
+                            <td>EM Bypass</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-faucet-drip"></i> Drip Irrigation</li>
+                                    <li><i class="fa-solid fa-scissors"></i> Hedge Clipping</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td class="amount-cell">₹2,500</td>
+                        </tr>
+
+                        <!-- 29 Jul -->
+                        <tr>
+                            <td>29 Jul</td>
+                            <td>Kankurgachi</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-broom"></i> Garden Cleanup</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.8</span></td>
+                            <td class="amount-cell">₹1,200</td>
+                        </tr>
+
+                        <!-- 30 Jul -->
+                        <tr>
+                            <td>30 Jul</td>
+                            <td>Ultadanga</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-seedling"></i> Plant Bed Prep</li>
+                                    <li><i class="fa-solid fa-spray-can"></i> Weed Control</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                            <td class="amount-cell">₹2,000</td>
+                        </tr>
+
+                        <!-- 31 Jul -->
+                        <tr>
+                            <td>31 Jul</td>
+                            <td>Chinar Park</td>
+                            <td>
+                                <ul class="table-job-list">
+                                    <li><i class="fa-solid fa-scissors"></i> Monthly Lawn Trim</li>
+                                </ul>
+                            </td>
+                            <td><span class="rating-stars"><i class="fa-solid fa-star"></i> 5.0</span></td>
+                            <td class="amount-cell">₹1,500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="view-previous-container">
+                <a href="months.html" class="view-more">View Previous Records →</a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

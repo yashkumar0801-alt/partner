@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Rajdhani:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Notch:wght@200..700&family=Stack+Sans+Text:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Request Accepted Success Banner -->
+    <div id="support-success-msg" class="support-success-toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>Your request has been accepted</span>
+    </div>
+
+    <nav class="top-navbar">
+        <div class="nav-left">
+            <h1 class="greeting">Hi, <span id="user-name">Rajesh</span></h1>
+        </div>
+        
+        <div class="nav-right" id="nav-menu">
+            <a href="overview.html" class="nav-item nav-btn overall" id="nav-overall">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Overview</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+
+        <!-- Today's Overview Section -->
+        <section>
+            <h2>TODAY'S OVERVIEW</h2>
+            <div class="card overview-grid">
+                <div>
+                    <h3 id="stat-earnings">₹2,450</h3>
+                    <p><i class="fa-solid fa-wallet"></i> Earnings</p>
+                </div>
+                <div>
+                    <h3 id="stat-jobs">3</h3>
+                    <p><i class="fa-solid fa-circle-check"></i> Jobs Done</p>
+                </div>
+                <div>
+                    <h3><span id="stat-rating">4.9</span> <i class="fa-solid fa-star" style="color: var(--icon-star, #fbc02d);"></i></h3>
+                    <p><i class="fa-solid fa-medal"></i> Rating</p>
+                </div>
+                <div>
+                    <h3 id="stat-cancel-rate">0%</h3>
+                    <p><i class="fa-solid fa-triangle-exclamation"></i> Cancel Rate</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Middle Section: Two Columns -->
+        <section class="middle-grid">
+        
+            <!-- Left Column: New Requests -->
+            <div class="middle-column">
+                <h2>NEW REQUESTS (<span id="request-count">3</span>)</h2>
+                <div class="card request-card" id="active-request-card">
+                    <header>
+                        <h3 id="req-service-name">AC Service & Deep Cleaning</h3>
+                        <span class="price" id="req-service-price">₹599</span>
+                    </header>
+                    <p><i class="fa-solid fa-location-dot"></i> <span id="req-service-location">2.5 km away (Salt Lake)</span></p>
+                    <p><i class="fa-regular fa-clock"></i> <span id="req-service-time">Today, 6:00 PM - 7:00 PM</span></p>
+                
+                    <div class="button-grid-2">
+                        <button class="btn-outline" id="btn-decline-req">Decline</button>
+                        <button class="btn-solid" id="btn-accept-req">Accept Job</button>
+                    </div>
+                    
+                    <a href="#" class="view-more" id="view-more-requests">view +2 more</a>
+                </div>
+            </div>
+
+            <!-- Right Column: Next Appointment -->
+            <div class="middle-column">
+                <h2>NEXT APPOINTMENT</h2>
+                <div class="card" id="next-appointment-card">
+                    <header>
+                        <h3 id="app-service-name">Washing Machine Repair</h3>
+                    </header>
+                    <p><i class="fa-solid fa-user"></i> <span id="app-customer-name">Priya S.</span></p>
+                    <p><i class="fa-regular fa-clock"></i> <span id="app-time">4:00 PM (In 45 mins)</span></p>
+                    <p><i class="fa-solid fa-location-dot"></i> <span id="app-location">City Center Apartments</span></p>
+                
+                    <div class="button-grid-2">
+                        <button class="btn-outline" id="btn-call-customer"><i class="fa-solid fa-phone"></i> Call</button>
+                        <button class="btn-outline" id="btn-navigate"><i class="fa-solid fa-location-arrow"></i> Navigate</button>
+                    </div>
+                    <button class="btn-solid btn-full" id="btn-mark-on-way">Mark as 'On The Way'</button>
+                    
+                    <a href="appointments.html" class="view-more" id="view-more-appointments">view +2 more</a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Quick Actions Section -->
+        <section>
+            <h2>QUICK ACTIONS</h2>
+            <div class="quick-actions-grid">
+                <button type="button" class="card action-btn" id="action-buy-parts" onclick="window.location.href='parts.html'">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Request Spare Parts</span>
+                </button>
+                <button type="button" class="card action-btn" id="action-manage-calendar" onclick="window.location.href='calendar.html'">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Manage Calendar</span>
+                </button>
+                <button type="button" class="card action-btn" id="action-help-support">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>Help & Support</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- The Pop-up Modal for Requests -->
+    <div id="requestsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ALL NEW REQUESTS</h2>
+                <span class="close-btn" id="close-modal">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="card request-card popup-card">
+                    <header>
+                        <h3>TV Repair</h3>
+                        <span class="price">₹450</span>
+                    </header>
+                    <p><i class="fa-solid fa-location-dot"></i> 4.1 km away (Sector 5)</p>
+                    <p><i class="fa-regular fa-clock"></i> Tomorrow, 10:00 AM</p>
+                    <div class="button-grid-2">
+                        <button class="btn-outline">Decline</button>
+                        <button class="btn-solid">Accept Job</button>
+                    </div>
+                </div>
+
+                <div class="card request-card popup-card">
+                    <header>
+                        <h3>Washing Machine Repair</h3>
+                        <span class="price">₹650</span>
+                    </header>
+                    <p><i class="fa-solid fa-location-dot"></i> 1.2 km away (New Town)</p>
+                    <p><i class="fa-regular fa-clock"></i> Tomorrow, 2:00 PM</p>
+                    <div class="button-grid-2">
+                        <button class="btn-outline">Decline</button>
+                        <button class="btn-solid">Accept Job</button>
+                    </div>
+                </div>
+
+                <div class="card request-card popup-card">
+                    <header>
+                        <h3>AC Installation</h3>
+                        <span class="price">₹1500</span>
+                    </header>
+                    <p><i class="fa-solid fa-location-dot"></i> 5.0 km away (Dum Dum)</p>
+                    <p><i class="fa-regular fa-clock"></i> Friday, 11:00 AM</p>
+                    <div class="button-grid-2">
+                        <button class="btn-outline">Decline</button>
+                        <button class="btn-solid">Accept Job</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help & Support Call Request Modal -->
+    <div id="supportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>HELP & SUPPORT</h2>
+                <span class="close-btn" id="close-support-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="support-modal-body">
+                    <h3>Do you want a call?</h3>
+                    <div class="support-field">
+                        <label for="support-time-select">Select available timing:</label>
+                        <select id="support-time-select" class="support-dropdown">
+                            <option value="" disabled selected>Select a time slot</option>
+                            <option value="9am-11am">9:00 AM - 11:00 AM</option>
+                            <option value="11am-1pm">11:00 AM - 1:00 PM</option>
+                            <option value="1pm-3pm">1:00 PM - 3:00 PM</option>
+                            <option value="3pm-5pm">3:00 PM - 5:00 PM</option>
+                            <option value="5pm-7pm">5:00 PM - 7:00 PM</option>
+                        </select>
+                    </div>
+                    <button type="button" id="btn-request-call" class="btn-solid btn-full" disabled>request a call</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for external JS -->
+    <script src="script.js"></script>
+</body>
+</html>

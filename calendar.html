@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Calendar</title>
+    <link rel="stylesheet" href="calendar.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Floating Back Button -->
+    <a href="home.html" class="floating-back-btn" aria-label="Go Back">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <main class="dashboard">
+        <!-- Header Section -->
+        <header class="header-section">
+            <h1 class="page-title">MANAGE CALENDAR</h1>
+        </header>
+
+        <!-- Controls Section: Month & Year Selectors -->
+        <section class="calendar-controls">
+            <div class="control-group">
+                <label for="month-select">Month:</label>
+                <select id="month-select" class="dropdown">
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6" selected>July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="year-select">Year:</label>
+                <select id="year-select" class="dropdown">
+                    <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
+                </select>
+            </div>
+
+            <!-- Leave Info Badge -->
+            <div class="leave-info-badge">
+                <i class="fa-solid fa-suitcase"></i>
+                <span>Paid Leaves Left: <strong id="leaves-count">3</strong></span>
+            </div>
+        </section>
+
+        <!-- Calendar Container -->
+        <section class="card calendar-card">
+            <!-- Weekday Headers -->
+            <div class="calendar-grid weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+
+            <!-- Days Grid -->
+            <div class="calendar-grid days" id="calendar-days">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Leave Request Modal -->
+    <div id="leaveModal" class="modal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h2>Apply for Paid Leave</h2>
+                <span class="close-btn" id="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p class="modal-date-info">Selected Date: <strong id="modal-selected-date">--</strong></p>
+                <p>Do you want to apply for a paid leave on this date?</p>
+                <div class="leave-balance-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Remaining Paid Leaves: <strong id="modal-leaves-count">3</strong></span>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-outline" id="btn-cancel-leave">Cancel</button>
+                    <button class="btn-solid" id="btn-apply-leave">Apply for Leave</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // System variables
+        const START_DATE = new Date(2026, 6, 15); // Start Date: July 15, 2026
+        const END_DATE = new Date(2027, 6, 31);   // End Date: July 31, 2027
+        
+        let remainingLeaves = 3;
+        let selectedDateForLeave = null;
+        let appliedLeaves = []; // Stores date strings e.g. "2026-6-20"
+
+        // DOM elements
+        const monthSelect = document.getElementById('month-select');
+        const yearSelect = document.getElementById('year-select');
+        const calendarDays = document.getElementById('calendar-days');
+        const leavesCountSpan = document.getElementById('leaves-count');
+        
+        // Modal DOM elements
+        const leaveModal = document.getElementById('leaveModal');
+        const closeModal = document.getElementById('close-modal');
+        const modalSelectedDate = document.getElementById('modal-selected-date');
+        const modalLeavesCount = document.getElementById('modal-leaves-count');
+        const btnCancelLeave = document.getElementById('btn-cancel-leave');
+        const btnApplyLeave = document.getElementById('btn-apply-leave');
+
+        // Initial setup
+        function initCalendar() {
+            monthSelect.addEventListener('change', renderCalendar);
+            yearSelect.addEventListener('change', renderCalendar);
+            
+            closeModal.addEventListener('click', hideModal);
+            btnCancelLeave.addEventListener('click', hideModal);
+            btnApplyLeave.addEventListener('click', handleApplyLeave);
+
+            window.addEventListener('click', (e) => {
+                if (e.target === leaveModal) hideModal();
+            });
+
+            renderCalendar();
+        }
+
+        // Render monthly grid
+        function renderCalendar() {
+            const month = parseInt(monthSelect.value);
+            const year = parseInt(yearSelect.value);
+
+            calendarDays.innerHTML = '';
+
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Empty cells for previous month offset
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.classList.add('day-cell', 'empty-cell');
+                calendarDays.appendChild(emptyCell);
+            }
+
+            // Days cells
+            for (let day = 1; day <= totalDaysInMonth; day++) {
+                const cellDate = new Date(year, month, day);
+                const dayCell = document.createElement('div');
+                dayCell.classList.add('day-cell');
+
+                const dateStr = `${year}-${month}-${day}`;
+
+                // Create date number element
+                const dayNumber = document.createElement('span');
+                dayNumber.classList.add('day-number');
+                dayNumber.textContent = day;
+                dayCell.appendChild(dayNumber);
+
+                // Disable if before July 15, 2026 OR after July 31, 2027
+                if (cellDate < START_DATE || cellDate > END_DATE) {
+                    dayCell.classList.add('disabled-day');
+                } else {
+                    dayCell.classList.add('selectable-day');
+
+                    // Highlight current day (July 15, 2026)
+                    if (cellDate.getTime() === START_DATE.getTime()) {
+                        dayCell.classList.add('today-day');
+                    }
+
+                    // Highlight already applied leaves
+                    if (appliedLeaves.includes(dateStr)) {
+                        dayCell.classList.add('leave-applied-day');
+                        
+                        const badge = document.createElement('span');
+                        badge.classList.add('pl-badge');
+                        badge.textContent = 'PL Applied';
+                        dayCell.appendChild(badge);
+                    }
+
+                    // Click handler for valid dates
+                    dayCell.addEventListener('click', () => {
+                        if (!appliedLeaves.includes(dateStr)) {
+                            openModal(cellDate, dateStr);
+                        }
+                    });
+                }
+
+                calendarDays.appendChild(dayCell);
+            }
+        }
+
+        function openModal(dateObj, dateStr) {
+            selectedDateForLeave = dateStr;
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            modalSelectedDate.textContent = dateObj.toLocaleDateString('en-US', options);
+            modalLeavesCount.textContent = remainingLeaves;
+            leaveModal.style.display = 'flex';
+        }
+
+        function hideModal() {
+            leaveModal.style.display = 'none';
+            selectedDateForLeave = null;
+        }
+
+        function handleApplyLeave() {
+            if (remainingLeaves <= 0) {
+                alert("You have no paid leaves remaining!");
+                return;
+            }
+
+            if (selectedDateForLeave && !appliedLeaves.includes(selectedDateForLeave)) {
+                appliedLeaves.push(selectedDateForLeave);
+                remainingLeaves--;
+
+                // Update UI state
+                leavesCountSpan.textContent = remainingLeaves;
+                renderCalendar();
+                hideModal();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initCalendar);
+    </script>
+</body>
+</html>

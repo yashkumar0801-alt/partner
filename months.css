@@ -1,0 +1,181 @@
+/* --- Global Variables --- */
+:root {
+    --bg-page: #fff9f3;
+    --bg-surface: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #635f5a;
+    --text-accent: #c28d54;
+    --shadow-subtle: rgba(0, 0, 0, 0.04);
+    --color-green: #3b7c41;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-page);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- Reusable Base Layout --- */
+.dashboard {
+    padding: 20px 40px 40px 40px; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Floating Back Button --- */
+.floating-back-btn {
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.floating-back-btn:hover {
+    color: var(--text-accent);
+    transform: scale(1.05);
+}
+
+/* --- Header Section --- */
+.header-section {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 3.45rem; 
+    color: var(--text-primary);
+    font-family: "Roboto", sans-serif;
+    margin: 10px 0 0 0;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* --- Year Dropdown Selector --- */
+.year-selector-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.year-dropdown-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-surface);
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px var(--shadow-subtle);
+}
+
+.year-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.year-dropdown {
+    background: transparent;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.year-dropdown:focus, 
+.year-dropdown:hover {
+    border-color: var(--text-accent);
+}
+
+/* --- Months Grid --- */
+.months-grid-section {
+    width: 100%;
+}
+
+.months-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.month-card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 8px var(--shadow-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.month-card i {
+    color: var(--text-accent);
+    transition: transform 0.2s ease;
+}
+
+.month-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-color: var(--text-accent);
+}
+
+.month-card:hover i {
+    transform: translateX(4px);
+}
+
+.active-month {
+    border-left: 4px solid var(--text-accent);
+}
+
+/* ========================================== */
+/* --- Mobile Responsiveness (Phones) --- */
+/* ========================================== */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 20px 15px;
+    }
+    .floating-back-btn {
+        top: 15px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+    }
+    .page-title {
+        font-size: 2.5rem;
+        margin-top: 50px;
+    }
+    .months-grid {
+        grid-template-columns: 1fr;
+    }
+}

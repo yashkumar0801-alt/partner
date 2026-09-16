@@ -1,0 +1,188 @@
+/* --- Global Variables --- */
+:root {
+    --bg-page: #fff9f3;
+    --bg-surface: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #635f5a;
+    --text-accent: #c28d54;
+    --shadow-subtle: rgba(0, 0, 0, 0.04);
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-page);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- Layout specific to Appointments Page --- */
+.appointments-dashboard {
+    /* Sets the width to 60% and centers it on the screen */
+    width: 60%; 
+    max-width: 800px; /* Prevents it from getting absurdly wide on huge monitors */
+    min-width: 320px; /* Ensures it doesn't break on small mobile screens */
+    margin: 0 auto;
+    padding: 40px 20px 80px 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* --- Floating Back Button --- */
+.floating-back-btn {
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.floating-back-btn:hover {
+    color: var(--text-accent);
+    transform: scale(1.05);
+}
+
+/* --- Page Title --- */
+.page-title {
+    text-align: center;
+    font-size: 2.5rem; 
+    color: var(--text-primary);
+    font-family: "Roboto", sans-serif;
+    margin: 10px 0 20px 0;
+}
+
+/* --- The Stacked List --- */
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Spacing between the stacked cards */
+}
+
+/* --- Base Card Styles --- */
+.card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 2px 8px var(--shadow-subtle);
+}
+
+.appointment-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-family: "Roboto", sans-serif;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card p i {
+    color: var(--text-accent);
+    width: 16px;
+    text-align: center;
+}
+
+/* --- Buttons --- */
+.button-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 12px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #eaeaea; 
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: #222222;
+    color: #ffffff;
+}
+
+.btn-solid {
+    background: #222222;
+    color: #ffffff;
+}
+
+.btn-solid:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-full {
+    width: 100%;
+    margin-top: 12px;
+}
+
+
+
+/* ========================================== */
+/* --- Mobile Responsiveness (Phones) --- */
+/* ========================================== */
+@media (max-width: 768px) {
+    /* Expands width from 60% to 95% on small screens */
+    .appointments-dashboard {
+        width: 95%;
+        padding: 20px 10px 40px 10px;
+    }
+    .floating-back-btn {
+        top: 15px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+    }
+    .page-title {
+        font-size: 2rem;
+        margin-top: 50px;
+    }
+    /* Stacks the Call and Navigate buttons */
+    .button-grid-2 {
+        grid-template-columns: 1fr;
+    }
+}

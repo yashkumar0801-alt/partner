@@ -1,0 +1,373 @@
+/* --- Global Variables --- */
+:root {
+    --bg-page: #fff9f3;
+    --bg-surface: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #635f5a;
+    --text-accent: #c28d54;
+    --shadow-subtle: rgba(0, 0, 0, 0.04);
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-page);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- Reusable Base Layout --- */
+.dashboard {
+    padding: 20px 40px 40px 40px; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* --- Floating Back Button --- */
+.floating-back-btn {
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.floating-back-btn:hover {
+    color: var(--text-accent);
+    transform: scale(1.05);
+}
+
+/* --- Header Section --- */
+.header-section {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 3.2rem; 
+    color: var(--text-primary);
+    font-family: "Roboto", sans-serif;
+    margin: 10px 0 10px 0;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* --- Controls Section --- */
+.calendar-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: var(--bg-surface);
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px var(--shadow-subtle);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.dropdown {
+    background: var(--bg-page);
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.dropdown:hover, .dropdown:focus {
+    border-color: var(--text-accent);
+}
+
+.leave-info-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fdf3e7;
+    color: #a86c2e;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* --- Calendar Card & Grid --- */
+.card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--shadow-subtle);
+    padding: 24px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.weekdays {
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.day-cell {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    user-select: none;
+    padding: 4px;
+    box-sizing: border-box;
+    position: relative; /* Fixed position layout context */
+    overflow: hidden;   /* Prevents element expansion */
+}
+
+.day-number {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Disabled state for dates outside July 15, 2026 - July 31, 2027 */
+.disabled-day {
+    background-color: #f2f2f2;
+    color: #cccccc;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* Selectable future dates */
+.selectable-day {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.selectable-day:hover {
+    background-color: #222222;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Special indicator for today */
+.today-day {
+    border: 2px solid var(--text-accent);
+}
+
+/* State when leave is applied: Yellow theme with PL badge */
+.leave-applied-day {
+    background-color: #ffeb3b !important;
+    color: #333333 !important;
+    border: 1px solid #fbc02d !important;
+}
+
+.leave-applied-day .day-number {
+    font-weight: 800;
+}
+
+.pl-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #222;
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    position: absolute; /* Kept out of standard layout flow */
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+/* Empty placeholder cells */
+.empty-cell {
+    background: transparent;
+}
+
+/* --- Modal Styles --- */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    max-width: 420px;
+    width: 100%;
+    animation: popup 0.25s ease-out;
+}
+
+@keyframes popup {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+}
+
+.close-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.close-btn:hover {
+    color: var(--text-primary);
+}
+
+.modal-body p {
+    margin: 8px 0;
+    color: var(--text-secondary);
+}
+
+.modal-date-info {
+    font-size: 1.1rem;
+    color: var(--text-primary) !important;
+}
+
+.leave-balance-box {
+    margin: 16px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 12px;
+    border: none;
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-solid {
+    background: #222222;
+    color: #ffffff;
+}
+
+.btn-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #cccccc;
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: #f5f5f5;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 20px 15px;
+    }
+    .floating-back-btn {
+        top: 15px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+    }
+    .page-title {
+        font-size: 2.3rem;
+        margin-top: 50px;
+    }
+    .calendar-grid {
+        gap: 6px;
+    }
+    .day-cell {
+        border-radius: 6px;
+        padding: 2px;
+        justify-content: flex-start;
+        padding-top: 4px;
+    }
+    .day-number {
+        font-size: 0.85rem;
+    }
+    .pl-badge {
+        font-size: 0.45rem;
+        padding: 1px 2px;
+        bottom: 2px;
+    }
+}
